@@ -10,9 +10,6 @@ Kirby::plugin('ragi96/table-field', [
                 'minColumns' => function ($minColumns = 1) {
                   return $minColumns;
                 },
-                'header' => function ($header = false) {
-                  return $header;
-                }
             ]
         ]
     ],
