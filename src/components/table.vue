@@ -44,8 +44,6 @@
     props: {
       minColumns: Number,
       maxColumns: Number,
-      header: Boolean,
-      caption: String,
 
       // general options
       label: String,
@@ -61,11 +59,8 @@
       this.value = this.getData(this.value, [_.fill(Array(this.minColumns), '')]);
     },
     data: {
-      Table: [],
       minColumns: 0,
       maxColumns: 0,
-      header: [],
-      caption: ''
     },
     computed: {
       columnCount: function () {
