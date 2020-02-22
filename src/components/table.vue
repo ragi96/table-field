@@ -111,7 +111,6 @@
         if (!((rowIndex == 0 && direction == -1) || ((rowIndex == (this.rowCount - 1)) && direction == 1))) {
           var changing = this.value[rowIndex];
           this.value.splice(rowIndex, 1);
-
           this.value.splice(rowIndex + direction, 0, changing);
         }
         this.updateTable();
@@ -136,10 +135,11 @@
         } else {
           console.error('Wrong direction!');
         }
+        console.log(this.value);
         if (!((colNum == 0 && direction == -1) || ((colNum + 1 == this.columnCount) && direction == 1))) {
-          _.forEach(this.value, function (array) {
-            array.slice(colNum + direction, 0, array.slice(colNum, 1)[0]);
-          });
+          _.forEach(this.value, function (value) {
+              value.splice(colNum + direction, 0, value.splice(colNum, 1)[0]);
+            });
         }
         this.updateTable();
       },
