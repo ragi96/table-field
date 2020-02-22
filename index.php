@@ -15,5 +15,10 @@ Kirby::plugin('ragi96/table-field', [
                 }
             ]
         ]
+    ],
+    'fieldMethods' => [
+        'toTable' => function ($field) {
+            return $field->toArray()['table'];
+        }
     ]
 ]);

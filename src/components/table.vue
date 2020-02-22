@@ -14,10 +14,8 @@
           <k-button icon="add" v-bind:class="{ disabled: columnCount >= maxColumns }" v-on:click="addColumn()"></k-button>
         </div>
       </div>
-
       <!-- Table Body -->
       <div class="table-container">
-
         <!-- Row -->
         <div class="table-row" v-for="(row, rowIndex) in value">
           <div class="row-ctrl move-row">
@@ -25,14 +23,11 @@
             <k-button icon="angle-down" v-bind:class="{ disabled: rowIndex == rowCount-1 }" v-on:click="moveRow(rowIndex,	'down')"></k-button>
           </div>
           <input class="row-cell input" :name="'name[table]['+ rowIndex +']'" v-model="row[cellIndex]" v-on:change="updateTable()" v-for="(cell, cellIndex) in row" />
-
-                 <div class="row-ctrl delete-row">
+          <div class="row-ctrl delete-row">
             <k-button icon="remove" v-on:click="deleteRow(rowIndex)" v-show="rowCount > 1"></k-button>
           </div>
         </div>
       </div>
-
-
       <!-- Add Row Btn-->
       <div class="table-add-row">
         <div class="row-cell">
@@ -85,7 +80,7 @@
         if (_.isEmpty(value)) {
           value = defaultValues;
         } else {
-          console.log("Loading data from Kirby", value);
+          console.log("Loading data from Kirby");
         }
 
         return value;
@@ -135,11 +130,10 @@
         } else {
           console.error('Wrong direction!');
         }
-        console.log(this.value);
         if (!((colNum == 0 && direction == -1) || ((colNum + 1 == this.columnCount) && direction == 1))) {
           _.forEach(this.value, function (value) {
-              value.splice(colNum + direction, 0, value.splice(colNum, 1)[0]);
-            });
+            value.splice(colNum + direction, 0, value.splice(colNum, 1)[0]);
+          });
         }
         this.updateTable();
       },
