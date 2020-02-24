@@ -1,105 +1,98 @@
-#table {
-  [v-cloak].table-field {
-    display: none;
-  }
-  &.table-field {
-    .table-ctrl {
-      display:flex;
-      .row-cell {
-        height: 1.5rem;
-        border-top-color: #ddd;
-        .centering {
-          width:56px;
-          margin:0 auto;
-        }
-      }
-      &:first-child {
-        padding-left:1.5rem;
-      }
-      .row-ctrl{
-        height:1.5rem;
-        &:first-child {
-          border-left-color: transparent;
-        }
-        &:last-child {
-          border-top-style: dashed;
-          border-top-color: #d7d7d7;
-        }
-      }
-    }
-    .table-row {
-      display:flex;
-      &:last-child {
-        .row-ctrl:last-child {
-          border-bottom-style: dashed;
-          border-bottom-color: #d7d7d7;
-        }
-      }
-      .row-ctrl {
-        padding:0.3rem 0.15rem;
-        height:3rem;
-        &.delete-row {
-          button {
-            padding-top:8px;
-          }
-        }
-      }
-    }
-    .table-add-row {
-      display:flex;
-      .row-cell {
-        border-style: dashed;
-        border-left-color: #d7d7d7;
-        border-right-color: #d7d7d7;
-        border-bottom-color: #d7d7d7;
-        .k-button {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-    }
-    .row-ctrl {
-      position: relative;
-      flex-shrink: 0;
-      flex-grow: 0;
-      width: 1.5rem;
-      height: 1.5rem;
-      border: 1px solid #ddd;
-      border-top-color: transparent;
-      border-left-color: transparent;
-      &:first-child {
-        border-left-color: #ddd;
-        border-right-color: transparent;
-      }
-      &:last-child {
-        border-right-style: dashed;
-        border-right-color: #d7d7d7;
-      }
-      + .row-cell {
-        border-left-color: #ddd;
-      }
-      &.add-column {
-        button {
-          padding-left:3px;
-        }
-      }
-    }
-    .row-cell {
-      position: relative;
-      width: 100%;
-      height: 3rem;
-      padding-right: 0;
-      border: 1px solid #ddd;
-      border-top-color: transparent;
-      border-left-color: transparent;
-    }
+$border-color:#ccc;
+$add-field-hover:#81a2be;
+.table-field {
+  .row-cell {
+    position: relative;
+    width: 100%;
+    height: 3rem;
+    padding-right: 0;
+    border: 1px solid $border-color;
+    border-top-color: transparent;
+    border-left-color: transparent;
   }
   button {
     &.disabled {
       pointer-events: none;
       opacity: .2;
+    }
+  }
+  .table-ctrl {
+    display:flex;
+    border-left:1px solid $border-color;
+    border-top:1px solid $border-color;
+    border-bottom:1px solid $border-color;
+    padding-left:23px;
+    .row-cell {
+      height: 1.5rem;
+      border-bottom:0;
+      &:first-child {
+        border-left:1px solid $border-color;
+      }
+      .centering {
+        width:56px;
+        margin:0 auto;
+      }
+    }
+    .row-ctrl{
+      height:1.5rem;
+      border-bottom:0;
+    }
+  }
+  .table-row {
+    display:flex;
+    .row-ctrl {
+      padding:0.3rem 0.15rem;
+      height:3rem;
+      &.delete-row {
+        button {
+          padding-top:8px;
+        }
+      }
+    }
+  }
+  .table-add-row {
+    display:flex;
+    .row-cell {
+      border-width: 0px;
+      .k-button {
+        border-left:1px dashed $border-color;
+        border-bottom:1px dashed $border-color;
+        border-right:1px dashed $border-color;
+        width: 100%;
+        height:100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: transparent;
+        transform: translate(-50%, -50%);
+        transition: background-color .3s, border-color .3s;
+        &:hover {
+          background-color: $add-field-hover;
+          border-color:transparent;
+        }
+      }
+    }
+  }
+  .row-ctrl {
+    position: relative;
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid $border-color;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    &:first-child {
+      border-left-color: $border-color;
+      border-right-color: transparent;
+    }
+    + .row-cell {
+      border-left-color: $border-color;
+    }
+    &.add-column {
+      button {
+        padding-left:3px;
+      }
     }
   }
 }

@@ -1,17 +1,17 @@
 <template>
   <k-field :disabled="disabled" :label="label" :name="name" :required="required" :type="type" class="k-table-field" v-bind="$props">
-    <div id="table" class="table-field field field-name" v-cloak data-field='table'>
+    <div class="table-field field field-name" v-cloak data-field='table'>
       <!-- Column Controls -->
       <div class="table-ctrl">
         <div class="row-cell column-ctrl" v-for="n in columnCount">
           <div class="centering">
-            <k-button icon="angle-left" v-bind:class="{ disabled: n == 1 }" v-on:click="moveColumn(n-1, 'left')"></k-button>
-            <k-button icon="remove" v-bind:class="{ disabled: columnCount <= minColumns }" v-on:click="deleteColumn(n)"></k-button>
-            <k-button icon="angle-right" v-bind:class="{ disabled: n == columnCount }"  v-on:click="moveColumn(n-1, 'right')"></k-button>
+            <k-button icon="angle-left" v-bind:class="{ disabled: n == 1 }" @click="moveColumn(n-1, 'left')"></k-button>
+            <k-button icon="remove" v-bind:class="{ disabled: columnCount <= minColumns }" @click="deleteColumn(n)"></k-button>
+            <k-button icon="angle-right" v-bind:class="{ disabled: n == columnCount }"  @click="moveColumn(n-1, 'right')"></k-button>
           </div>
         </div>
         <div class="row-ctrl add-column">
-          <k-button icon="add" v-bind:class="{ disabled: columnCount >= maxColumns }" v-on:click="addColumn()"></k-button>
+          <k-button icon="add" v-bind:class="{ disabled: columnCount >= maxColumns }" @click="addColumn()"></k-button>
         </div>
       </div>
       <!-- Table Body -->
@@ -19,19 +19,19 @@
         <!-- Row -->
         <div class="table-row" v-for="(row, rowIndex) in value">
           <div class="row-ctrl move-row">
-            <k-button icon="angle-up" v-bind:class="{ disabled: rowIndex == 0 }" v-on:click="moveRow(rowIndex, 'up')"></k-button>
-            <k-button icon="angle-down" v-bind:class="{ disabled: rowIndex == rowCount-1 }" v-on:click="moveRow(rowIndex,	'down')"></k-button>
+            <k-button icon="angle-up" v-bind:class="{ disabled: rowIndex == 0 }" @click="moveRow(rowIndex, 'up')"></k-button>
+            <k-button icon="angle-down" v-bind:class="{ disabled: rowIndex == rowCount-1 }" @click="moveRow(rowIndex,	'down')"></k-button>
           </div>
           <input class="row-cell input" :name="'name[table]['+ rowIndex +']'" v-model="row[cellIndex]" v-on:change="updateTable()" v-for="(cell, cellIndex) in row" />
           <div class="row-ctrl delete-row">
-            <k-button icon="remove" v-on:click="deleteRow(rowIndex)" v-show="rowCount > 1"></k-button>
+            <k-button icon="remove" @click="deleteRow(rowIndex)" v-show="rowCount > 1"></k-button>
           </div>
         </div>
       </div>
       <!-- Add Row Btn-->
       <div class="table-add-row">
         <div class="row-cell">
-          <k-button icon="add" v-on:click="addRow()">Add</k-button>
+          <k-button icon="add" @click="addRow()">Add</k-button>
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
     },
     data: {
       minColumns: 0,
-      maxColumns: 0,
+      maxColumns: 0
     },
     computed: {
       columnCount: function () {
