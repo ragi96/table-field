@@ -50,3 +50,6 @@ Link to latest version https://github.com/ragi96/table-field/releases/latest
 
 ### With Git
 ```git clone https://github.com/ragi96/table-field/releases.git table-field```
+
+### Composer
+```Composer require ragi96/table-field```
