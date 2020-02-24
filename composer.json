@@ -1,0 +1,25 @@
+{
+    "name": "ragi96/table-field",
+    "description": "Table-Field is a kirby 3 field plugin to make nice extendable tables",
+    "type": "kirby-plugin",
+    "version": "1.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ragi96",
+            "email": "no@email.org"
+        }
+    ],
+    "keywords": [
+      "kirby3",
+      "kirby3-cms",
+      "kirby3-plugin",
+      "table-field",
+      "kirby-table",
+      "table"
+    ],
+    "require": {
+      "php": ">=7.1.0",
+      "getkirby/composer-installer": "^1.1"
+    }
+}
