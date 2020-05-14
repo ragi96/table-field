@@ -50,7 +50,7 @@
       disabled: Boolean,
       help: String,
       parent: String,
-      value: [String, Array],
+      value: Array,
       name: [String, Number],
       required: Boolean,
       type: String
@@ -75,9 +75,25 @@
         if (_.isEmpty(value)) {
           value = defaultValues;
         } else {
-          console.log("Loading data from Kirby");
+          // Maybe a kirby bug has to parse markdown to array manually (just sometimes)
+          if(typeof value === 'string'){
+            let spittedString = value.split("\n"); 
+            const selfmadeValue = [];
+            let row = [];
+            spittedString.forEach((val) => {
+              if(val == '- '){
+                if(row.length > 0){
+                  selfmadeValue.push(row);
+                }
+                row = [];
+              } else {
+                row.push(val.split("- ").pop());
+              }
+            });
+            selfmadeValue.push(row);
+            value = selfmadeValue;
+          }
         }
-
         return value;
       },
       addRow: function () {
