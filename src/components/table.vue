@@ -23,7 +23,7 @@
             <k-button icon="angle-down" v-bind:class="{ disabled: rowIndex == rowCount-1 }" @click="moveRow(rowIndex,	'down')"></k-button>
           </div>
           <input class="row-cell input" :name="'name[table]['+ rowIndex +']'" v-model="row[cellIndex]" v-on:change="updateTable()" v-for="(cell, cellIndex) in row" />
-                 <div class="row-ctrl delete-row">
+          <div class="row-ctrl delete-row">
             <k-button icon="remove" @click="deleteRow(rowIndex)" v-show="rowCount > 1"></k-button>
           </div>
         </div>
@@ -73,7 +73,7 @@
       betterVal: function () {
         let newValue;
         if (typeof this.value === 'string') {
-          let spittedString = this.value.split("\n");
+          let spittedString = this.value.split('\n');
           const selfmadeValue = [];
           let row = [];
           spittedString.forEach((val) => {
@@ -83,7 +83,7 @@
               }
               row = [];
             } else {
-              row.push(val.split("- ").pop());
+              row.push(val.split('- ').pop().replace(/\""/g, ""));
             }
           });
           selfmadeValue.push(row);
@@ -155,7 +155,7 @@
       },
       updateTable: function () {
         console.log(this.betterVal);
-        this.$emit("input", this.betterVal);
+        this.$emit('input', this.betterVal);
       }
     }
   };
