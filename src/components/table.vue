@@ -56,7 +56,7 @@
       type: String
     },
     created: function () {
-      this.value = this.getData(this.value, [_.fill(Array(this.minColumns), '')]);
+      this.value = this.getData(this.betterVal, [_.fill(Array(this.minColumns), '')]);
     },
     data: {
       minColumns: 0,
@@ -64,11 +64,12 @@
     },
     computed: {
       columnCount: function () {
-        return this.value[0].length;
+        return this.betterVal[0].length;
       },
       rowCount: function () {
-        return this.value.length;
+        return this.betterVal.length;
       },
+      // Better control of this.value, always use this.betterval
       betterVal: function () {
         let newValue;
         if (typeof this.value === 'string') {
@@ -97,36 +98,16 @@
       getData: function (value, defaultValues) {
         if (_.isEmpty(value)) {
           value = defaultValues;
-        } else {
-          // Maybe a kirby bug has to parse markdown to array manually (just sometimes)
-          if (typeof value === 'string') {
-
-            let spittedString = value.split("\n");
-            const selfmadeValue = [];
-            let row = [];
-            spittedString.forEach((val) => {
-              if (val == '- ') {
-                if (row.length > 0) {
-                  selfmadeValue.push(row);
-                }
-                row = [];
-              } else {
-                row.push(val.split("- ").pop());
-              }
-            });
-            selfmadeValue.push(row);
-            value = selfmadeValue;
-          }
         }
         return value;
       },
       addRow: function () {
         // Pushes an array of length columnCount filled with ''
-        this.value.push(_.fill(Array(this.columnCount), ''));
+        this.betterVal.push(_.fill(Array(this.columnCount), ''));
         this.updateTable();
       },
       deleteRow: function (rowNum) {
-        this.value.splice(rowNum, 1);
+        this.betterVal.splice(rowNum, 1);
         this.updateTable();
       },
       moveRow: function (rowIndex, direction) {
@@ -139,20 +120,20 @@
         }
 
         if (!((rowIndex == 0 && direction == -1) || ((rowIndex == (this.rowCount - 1)) && direction == 1))) {
-          var changing = this.value[rowIndex];
-          this.value.splice(rowIndex, 1);
-          this.value.splice(rowIndex + direction, 0, changing);
+          var changing = this.betterVal[rowIndex];
+          this.betterVal.splice(rowIndex, 1);
+          this.betterVal.splice(rowIndex + direction, 0, changing);
         }
         this.updateTable();
       },
       addColumn: function () {
-        _.forEach(this.value, function (value) {
+        _.forEach(this.betterVal, function (value) {
           value.push("");
         });
         this.updateTable();
       },
       deleteColumn: function (colNum) {
-        _.forEach(this.value, function (value) {
+        _.forEach(this.betterVal, function (value) {
           value.splice(colNum - 1, 1);
         });
         this.updateTable();
@@ -166,15 +147,15 @@
           console.error('Wrong direction!');
         }
         if (!((colNum == 0 && direction == -1) || ((colNum + 1 == this.columnCount) && direction == 1))) {
-          _.forEach(this.value, function (value) {
+          _.forEach(this.betterVal, function (value) {
             value.splice(colNum + direction, 0, value.splice(colNum, 1)[0]);
           });
         }
         this.updateTable();
       },
       updateTable: function () {
-        console.log(this.value);
-        this.$emit("input", this.value);
+        console.log(this.betterVal);
+        this.$emit("input", this.betterVal);
       }
     }
   };
