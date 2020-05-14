@@ -17,13 +17,13 @@
       <!-- Table Body -->
       <div class="table-container">
         <!-- Row -->
-        <div class="table-row" v-for="(row, rowIndex) in value">
+        <div class="table-row" v-for="(row, rowIndex) in betterVal">
           <div class="row-ctrl move-row">
             <k-button icon="angle-up" v-bind:class="{ disabled: rowIndex == 0 }" @click="moveRow(rowIndex, 'up')"></k-button>
             <k-button icon="angle-down" v-bind:class="{ disabled: rowIndex == rowCount-1 }" @click="moveRow(rowIndex,	'down')"></k-button>
           </div>
           <input class="row-cell input" :name="'name[table]['+ rowIndex +']'" v-model="row[cellIndex]" v-on:change="updateTable()" v-for="(cell, cellIndex) in row" />
-          <div class="row-ctrl delete-row">
+                 <div class="row-ctrl delete-row">
             <k-button icon="remove" @click="deleteRow(rowIndex)" v-show="rowCount > 1"></k-button>
           </div>
         </div>
@@ -50,7 +50,7 @@
       disabled: Boolean,
       help: String,
       parent: String,
-      value: Array,
+      value: [String, Array],
       name: [String, Number],
       required: Boolean,
       type: String
@@ -68,6 +68,29 @@
       },
       rowCount: function () {
         return this.value.length;
+      },
+      betterVal: function () {
+        let newValue;
+        if (typeof this.value === 'string') {
+          let spittedString = this.value.split("\n");
+          const selfmadeValue = [];
+          let row = [];
+          spittedString.forEach((val) => {
+            if (val == '- ') {
+              if (row.length > 0) {
+                selfmadeValue.push(row);
+              }
+              row = [];
+            } else {
+              row.push(val.split("- ").pop());
+            }
+          });
+          selfmadeValue.push(row);
+          newValue = selfmadeValue;
+        } else {
+          newValue = this.value;
+        }
+        return newValue;
       }
     },
     methods: {
@@ -76,13 +99,14 @@
           value = defaultValues;
         } else {
           // Maybe a kirby bug has to parse markdown to array manually (just sometimes)
-          if(typeof value === 'string'){
-            let spittedString = value.split("\n"); 
+          if (typeof value === 'string') {
+
+            let spittedString = value.split("\n");
             const selfmadeValue = [];
             let row = [];
             spittedString.forEach((val) => {
-              if(val == '- '){
-                if(row.length > 0){
+              if (val == '- ') {
+                if (row.length > 0) {
                   selfmadeValue.push(row);
                 }
                 row = [];
@@ -149,6 +173,7 @@
         this.updateTable();
       },
       updateTable: function () {
+        console.log(this.value);
         this.$emit("input", this.value);
       }
     }
