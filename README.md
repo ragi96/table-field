@@ -16,10 +16,10 @@ As any Kirby field:
         minColumns: 5
 ```
 
-Options are not required. Defaults are:
+Options are not required. Defaults are (minColumns cant be 1):
 ```yaml
         maxColumns: 10
-        minColumns: 1
+        minColumns: 2
 ```
 
 Content is structured like an yaml array
@@ -30,15 +30,17 @@ In your template you can simply use the function ```toTable()```
 Example:
 ```php
 <?php $table = $data->table()->toTable(); ?>
-<table>
-  <?php foreach ($table as $tableRow): ?>
-    <tr>
-      <?php foreach ($tableRow as $tableCell): ?>
-        <td><?= $tableCell; ?></td>
-      <?php endforeach; ?>
-    </tr>
-  <?php endforeach; ?>
-</table>
+<?php if($table != null): ?>
+  <table>
+    <?php foreach ($table as $tableRow): ?>
+      <tr>
+        <?php foreach ($tableRow as $tableCell): ?>
+          <td><?= $tableCell; ?></td>
+        <?php endforeach; ?>
+      </tr>
+    <?php endforeach; ?>
+  </table>
+<?php endif; ?>
  ```
 
 ## Installation
