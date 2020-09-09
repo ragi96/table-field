@@ -64,7 +64,11 @@
     },
     computed: {
       columnCount: function () {
-        return this.betterVal[0].length;
+        if(this.betterVal == null){
+          return this.minColumns;
+        } else {
+          return this.betterVal[0].length;
+        }
       },
       rowCount: function () {
         return this.betterVal.length;
@@ -102,8 +106,8 @@
         return value;
       },
       addRow: function () {
-        // Pushes an array of length columnCount filled with ''
-        this.betterVal.push(_.fill(Array(this.columnCount), ''));
+        // Pushes an array of length columnCount filled with ' '
+        this.betterVal.push(_.fill(Array(this.columnCount), ' '));
         this.updateTable();
       },
       deleteRow: function (rowNum) {
