@@ -95,6 +95,11 @@
         } else {
           newValue = this.value;
         }
+        console.log(newValue);
+        if(newValue == null){
+          newValue = [['', '']];
+        }
+
         return newValue;
       }
     },
@@ -106,8 +111,8 @@
         return value;
       },
       addRow: function () {
-        // Pushes an array of length columnCount filled with ' '
-        this.betterVal.push(_.fill(Array(this.columnCount), ' '));
+        // Pushes an array of length columnCount filled with ''
+        this.betterVal.push(_.fill(Array(this.columnCount), ''));
         this.updateTable();
       },
       deleteRow: function (rowNum) {
@@ -158,7 +163,6 @@
         this.updateTable();
       },
       updateTable: function () {
-        console.log(this.betterVal);
         this.$emit('input', this.betterVal);
       }
     }
