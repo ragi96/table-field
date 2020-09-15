@@ -92,16 +92,13 @@
           newValue = this.value;
         }
         if(newValue == null){
-          let i = 0;
           newValue = new Array();
           let insideValue = new Array();
-          while(i < this.minColumns){
+          for(let i = 0; i < this.minColumns; i++){
             insideValue.push("");
-            i++
           }
           newValue.push(insideValue);
         }
-
         return newValue;
       }
     },
