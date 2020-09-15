@@ -11,12 +11,11 @@ As any Kirby field:
     table:
       label: table
       type: table
-      options:
-        maxColumns: 42
-        minColumns: 5
+      maxColumns: 42
+      minColumns: 5
 ```
 
-Options are not required. Defaults are (minColumns cant be 1):
+Options are not required. Defaults are:
 ```yaml
         maxColumns: 10
         minColumns: 2

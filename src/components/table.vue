@@ -58,10 +58,6 @@
     created: function () {
       this.value = this.getData(this.betterVal, [_.fill(Array(this.minColumns), '')]);
     },
-    data: {
-      minColumns: 0,
-      maxColumns: 0
-    },
     computed: {
       columnCount: function () {
         if(this.betterVal == null){
@@ -95,9 +91,15 @@
         } else {
           newValue = this.value;
         }
-        console.log(newValue);
         if(newValue == null){
-          newValue = [['', '']];
+          let i = 0;
+          newValue = new Array();
+          let insideValue = new Array();
+          while(i < this.minColumns){
+            insideValue.push("");
+            i++
+          }
+          newValue.push(insideValue);
         }
 
         return newValue;

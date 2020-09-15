@@ -4,10 +4,10 @@ Kirby::plugin('ragi96/table-field', [
     'fields' => [
         'table' => [
             'props' => [
-                'maxColumns' => function ($maxColumns = 10) {
+                'maxColumns' => function (int $maxColumns = 10) {
                     return $maxColumns;
                 },
-                'minColumns' => function ($minColumns = 2) {
+                'minColumns' => function (int $minColumns = 2) {
                     return $minColumns;
                 },
             ]
