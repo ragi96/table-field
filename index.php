@@ -32,8 +32,10 @@ Kirby::plugin('ragi96/table-field', [
                         $row = [];
                     } else {
                         $val = preg_replace('/- /', '', ltrim($val), 1);
-                        // removes first and last char
-                        $val = preg_replace('/^.|.$/','',$val);
+                        if (substr($val, 0, 1) === '"' && substr($val, -1) === '"') {
+                            // removes first and last char
+                            $val = preg_replace('/^.|.$/','',$val);
+                        }
                         array_push($row, $val);
                     }
                 }
