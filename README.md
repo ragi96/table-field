@@ -1,7 +1,7 @@
 # Kirby table-field
 A Table Field for Kirby V3
 
-![Table Field Preview](https://raw.githubusercontent.com/ragi96/table-field/master/preview.png "table field preview")
+![Table Field Preview](https://raw.githubusercontent.com/ragi96/table-field/master/preview.gif "table field preview")
 
 ## Usage
 
