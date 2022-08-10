@@ -1,7 +1,7 @@
 # Kirby table-field
 A Table Field for Kirby V3
 
-![Table Field Preview](https://raw.githubusercontent.com/ragi96/table-field/master/preview.png "table field preview")
+![Table Field Preview](https://raw.githubusercontent.com/ragi96/table-field/master/preview.gif "table field preview")
 
 ## Usage
 
@@ -11,13 +11,13 @@ As any Kirby field:
     table:
       label: table
       type: table
-      maxColumns: 42
-      minColumns: 5
+      maxColumns: 5
+      minColumns: 2
 ```
 
 Options are not required. Defaults are:
 ```yaml
-        maxColumns: 10
+        maxColumns: 5
         minColumns: 2
 ```
 

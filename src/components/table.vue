@@ -3,7 +3,7 @@
     <div class="table-field field field-name" v-cloak data-field='table'>
       <!-- Column Controls -->
       <div class="table-ctrl">
-        <div class="row-cell column-ctrl" v-for="n in columnCount">
+        <div class="row-cell column-ctrl" v-for="n in columnCount" :key="n.id">
           <div class="centering">
             <k-button icon="angle-left" v-bind:class="{ disabled: n == 1 }" @click="moveColumn(n-1, 'left')"></k-button>
             <k-button icon="remove" v-bind:class="{ disabled: columnCount <= minColumns }" @click="deleteColumn(n)"></k-button>
@@ -17,12 +17,12 @@
       <!-- Table Body -->
       <div class="table-container">
         <!-- Row -->
-        <div class="table-row" v-for="(row, rowIndex) in betterVal">
+        <div class="table-row" v-for="(row, rowIndex) in betterVal" :key="row.id">
           <div class="row-ctrl move-row">
             <k-button icon="angle-up" v-bind:class="{ disabled: rowIndex == 0 }" @click="moveRow(rowIndex, 'up')"></k-button>
             <k-button icon="angle-down" v-bind:class="{ disabled: rowIndex == rowCount-1 }" @click="moveRow(rowIndex,	'down')"></k-button>
           </div>
-          <input class="row-cell input" :name="'name[table]['+ rowIndex +']'" v-model="row[cellIndex]" v-on:change="updateTable()" v-for="(cell, cellIndex) in row" />
+          <input class="row-cell input" :name="'name[table]['+ rowIndex +']'" v-model="row[cellIndex]" v-on:change="updateTable()" v-for="(cell, cellIndex) in row" :key="cell.id"/>
           <div class="row-ctrl delete-row">
             <k-button icon="remove" @click="deleteRow(rowIndex)" v-show="rowCount > 1"></k-button>
           </div>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-  import _ from '../assets/js/lodash.js'
+  import _ from 'lodash';
   export default {
     props: {
       minColumns: Number,
