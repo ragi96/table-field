@@ -85,7 +85,7 @@
             } else {
               let sanitizedVal = val.trim()
                 .replace(/^- /, "")
-                .replace(/(^[\"\'])|([\"\']$)/g, "");
+                .replace(/^[\"\'](.*)[\"\']$/g, "$1");
               row.push(sanitizedVal);
             }
           });

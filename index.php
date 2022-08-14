@@ -33,7 +33,7 @@ Kirby::plugin('ragi96/table-field', [
                     } else {
                         $val = preg_replace('/^- /', '', ltrim($val), 1);
                         // removes first and last quotes
-                        $val = preg_replace('/(^[\"\'])|([\"\']$)/', '', $val);
+                        $val = preg_replace('/^[\"\'](.*)[\"\']$/', '$1', $val);
                         array_push($row, $val);
                     }
                 }
