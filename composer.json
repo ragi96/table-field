@@ -2,7 +2,7 @@
   "name": "ragi96/table-field",
   "description": "Table-Field is a kirby 3 field plugin to make nice extendable tables",
   "type": "kirby-plugin",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "license": "MIT",
   "authors": [{
     "name": "ragi96",
