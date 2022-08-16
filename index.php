@@ -31,11 +31,9 @@ Kirby::plugin('ragi96/table-field', [
                         }
                         $row = [];
                     } else {
-                        $val = preg_replace('/- /', '', ltrim($val), 1);
-                        if (substr($val, 0, 1) === '"' && substr($val, -1) === '"') {
-                            // removes first and last char
-                            $val = preg_replace('/^.|.$/', '', $val);
-                        }
+                        $val = preg_replace('/^- /', '', ltrim($val), 1);
+                        // removes first and last quotes
+                        $val = preg_replace('/^[\"\'](.*)[\"\']$/', '$1', $val);
                         array_push($row, $val);
                     }
                 }

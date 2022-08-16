@@ -83,7 +83,10 @@
               }
               row = [];
             } else {
-              row.push(val.split('- ').pop().replace(/\""/g, ""));
+              let sanitizedVal = val.trim()
+                .replace(/^- /, "")
+                .replace(/^[\"\'](.*)[\"\']$/g, "$1");
+              row.push(sanitizedVal);
             }
           });
           selfmadeValue.push(row);
