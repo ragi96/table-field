@@ -13,12 +13,14 @@ As any Kirby field:
       type: table
       maxColumns: 5
       minColumns: 2
+      cellType: writer
 ```
 
 Options are not required. Defaults are:
 ```yaml
         maxColumns: 5
         minColumns: 2
+        cellType: 
 ```
 
 Content is structured like an yaml array

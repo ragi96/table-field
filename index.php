@@ -4,6 +4,9 @@ Kirby::plugin('ragi96/table-field', [
     'fields' => [
         'table' => [
             'props' => [
+                'cellType' => function (string $cellType = '') {
+                    return $cellType;
+                },
                 'maxColumns' => function (int $maxColumns = 5) {
                     return $maxColumns;
                 },

@@ -1,3 +1,4 @@
+$cell-color:#fff;
 $border-color:#ccc;
 $add-field-hover:#81a2be;
 .table-field {
@@ -48,6 +49,9 @@ $add-field-hover:#81a2be;
           padding-top:8px;
         }
       }
+    }
+    .row-cell {
+      background-color: $cell-color;
     }
   }
   .table-add-row {
