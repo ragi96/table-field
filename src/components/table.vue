@@ -22,7 +22,7 @@
             <k-button icon="angle-up" v-bind:class="{ disabled: rowIndex == 0 }" @click="moveRow(rowIndex, 'up')"></k-button>
             <k-button icon="angle-down" v-bind:class="{ disabled: rowIndex == rowCount-1 }" @click="moveRow(rowIndex,	'down')"></k-button>
           </div>
-          <k-writer v-if="hasWriterCells" class="row-cell input" :name="'name[table][' + rowIndex + ']'" v-model="row[cellIndex]" v-on:change="updateTable()" v-for="(cell, cellIndex) in row" :key="cell.id"/>
+          <k-writer v-if="hasWriterCells" class="row-cell input" :name="'name[table][' + rowIndex + ']'" v-model="row[cellIndex]" v-on:input="updateTable()" v-for="(cell, cellIndex) in row" :key="cell.id"/>
           <input v-if="!hasWriterCells" class="row-cell input" :name="'name[table]['+ rowIndex +']'" v-model="row[cellIndex]" v-on:change="updateTable()" v-for="(cell, cellIndex) in row" :key="cell.id"/>
           <div class="row-ctrl delete-row">
             <k-button icon="remove" @click="deleteRow(rowIndex)" v-show="rowCount > 1"></k-button>
